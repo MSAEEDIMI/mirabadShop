@@ -1,0 +1,29 @@
+{% load static %}
+<script src=" {% static "assets/js/jquery.min.js" %} "></script>
+<script src=" {% static "assets/js/bootstrap.bundle.min.js" %}"></script>
+<script src=" {% static "assets/plugins/fontawesome/js/all.min.js" %}"></script>
+<script src=" {% static "assets/plugins/aos-master/dist/aos.js" %} "></script>
+<script src=" {% static "assets/js/droopmenu.js" %} "></script>
+<script src=" {% static "assets/js/nouislider.min.js" %} "></script>
+<script src=" {% static "assets/js/scripts.js" %} "></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const buttons = document.querySelectorAll('.most-sales-categories');
+  
+      buttons.forEach(button => {
+        button.addEventListener('click', function() {
+          // همه دکمه‌ها رو غیر فعال کن
+          buttons.forEach(btn => btn.classList.remove('active'));
+          
+          // این یکی رو فعال کن
+          this.classList.add('active');
+  
+          // اینجا می‌تونی درخواست AJAX بزنی یا محتوا رو تغییر بدی
+          const selectedCategory = this.getAttribute('data-val');
+          console.log("دسته انتخاب‌شده:", selectedCategory);
+  
+          // مثلا callProducts(selectedCategory);
+        });
+      });
+    });
+  </script>
