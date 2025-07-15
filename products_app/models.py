@@ -5,6 +5,7 @@ from django.utils.text import slugify
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
+    slug=models.SlugField()
     all_discount = models.IntegerField(default=0)
 
     def __str__(self):

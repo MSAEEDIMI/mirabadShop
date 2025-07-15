@@ -14,7 +14,7 @@ def home_app(requst):
     
     categorys=Category.objects.all()
     all_products =Product.objects.all()
-    special_sale=Product.objects.filter(discount__gte=30).order_by('-discount',)    
+    special_sale=Product.objects.filter(discount__gte=5).order_by('-discount',)    
     context={
         # baners and slider
         'main_banner': main_banner,
