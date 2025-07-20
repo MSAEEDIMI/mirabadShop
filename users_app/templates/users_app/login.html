@@ -6,26 +6,6 @@
 
 
 <section class="inner-page" id="contact-page">
-    <div class="container-fluid" id="page-hero">
-        <div class="row">
-            <div class="col-12">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 px-0">
-                            <h1>ورود به ناحیه کاربری</h1>
-                            <p>وارد ناحیه کاربری خود در روبیک مارکت شوید.</p>
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">صفحه نخست</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">ورود</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container py-2 py-md-5">
         <div class="row">
@@ -33,14 +13,14 @@
                 <div class="content">
                     <div class="row">
                         <div class="col-12 col-lg-5 text-center">
-                            <img src="assets/images/login.png" alt="">
+                            <img src=" {% static "assets/images/login.png" %} " alt="">
                         </div>
                         <div class="col-12 col-lg-7 pt-5 pt-md-0 align-self-center">
                             <form action="" method="POST">
                                 {% csrf_token %}
                                 <div class="title">وارد شوید</div>
                                 <p>با عضویت در سایت از همه امکانات سایت بهره مند شوید.</p>
-                                                                {% if form.errors %}
+                                {% if form.errors %}
                                     <div class="alert alert-danger" role="alert">
                                         <p>{{form.errors}}</p> 
                                     </div>

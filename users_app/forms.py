@@ -8,24 +8,21 @@ User=get_user_model()
 class Regestrform(forms.Form):
     first_name=forms.CharField(label='نام *:', widget=forms.TextInput( attrs={"class":"form-control" }))
     last_name=forms.CharField(label='نام خانوادگی *:', widget=forms.TextInput( attrs={"class":"form-control" }))
-    email=forms.CharField(label='ایمیل *:',widget=forms.EmailInput(attrs={"class":"form-control"}))
     phone_number=forms.CharField(label='شماره تلفن :',widget=forms.TextInput(attrs={"class":"form-control"}))
     password1=forms.CharField(label='رمز عبور *:‌',widget=forms.PasswordInput(attrs={"class":"form-control"}))
     password2=forms.CharField(label='تکرار رمز عبور *:',widget=forms.PasswordInput(attrs={"class":"form-control"}))
-    username=forms.CharField(help_text="باید ترکیبی از حروف انگلیسی و اعداد و نماد ها باشد ." ,label="نام کاربری *:",widget=forms.TextInput(attrs={"class":"form-control"}))
 
     def clean(self):
         cleaned_data = super().clean()
-        username=cleaned_data.get("username")
-        email=cleaned_data.get("email")
+        phone=cleaned_data.get("phone_number")
         pass1 = cleaned_data.get("password1")
         pass2 = cleaned_data.get("password2")
 
         if pass1 and pass2 and pass1 != pass2:
             raise ValidationError("پسورد ها یکی نیستن ")
         
-        if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
-            raise ValidationError("کاربر با این ایمیل و نام کاربری موجود است ")
+        if User.objects.filter(phone=phone).exists() :
+            raise ValidationError("کاربر با این شماره تلفن در سامانه موجود است ")
         
         return cleaned_data
 

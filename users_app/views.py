@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 User=get_user_model()
+
 class RegisterFormView(FormView):
     template_name = "users_app/register.html"
     form_class=Regestrform
@@ -17,9 +18,8 @@ class RegisterFormView(FormView):
         last_name=form.cleaned_data.get("last_name")
         email=form.cleaned_data.get("email")
         phone_number=form.cleaned_data.get("phone_number")
-        password1=form.cleaned_data.get("password1")
         password2=form.cleaned_data.get("password2")
-        user=User.objects.create_user(username=username,first_name=first_name,last_name=last_name,password=password2,email=email) # type: ignore
+        user=User.objects.create_user(phone=phone_number,first_name=first_name,last_name=last_name,password=password2,email=email) # type: ignore
         login(self.request,user)    
         return super().form_valid(form)
     
