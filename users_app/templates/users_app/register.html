@@ -16,16 +16,16 @@
                             <div class="title">عضویت در فروشگاه میرآباد</div>
                             <p>با ورود به صفحه خود از همه امکانات سایت بهره مند شوید.</p>
                             <form action="" method="POST">
-                                {% if errors %}
+                                {% if form.errors %}
                                     <div class="alert alert-danger" role="alert">
-                                        <p>{{errors.0}}</p> 
+                                        <p>{{form.errors}}</p> 
                                     </div>
                                 {% endif %}
                                 {% if form.non_field_errors %}
                                 <div class="alert alert-danger" role="alert">
                                     <p>{{ form.non_field_errors }}</p>
                                 </div>
-                            {% endif %}
+                                {% endif %}
                                 {% csrf_token %}
 
                                 <div class="form-group">

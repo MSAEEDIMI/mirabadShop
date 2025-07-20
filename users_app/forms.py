@@ -2,7 +2,8 @@ from typing import Any
 from django import forms
 from django.forms import ValidationError
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User=get_user_model()
 
 class Regestrform(forms.Form):
     first_name=forms.CharField(label='نام *:', widget=forms.TextInput( attrs={"class":"form-control" }))
@@ -32,12 +33,12 @@ class Regestrform(forms.Form):
 
 
 class LoginForm(forms.Form):
-    username=forms.CharField(label="نام کاربری :", widget=forms.TextInput( attrs={"class":"form-control" }))
+    phone=forms.CharField(label="شماره تلفن :", widget=forms.TextInput( attrs={"class":"form-control" }))
     password=forms.CharField(label='رمز ورود :', widget=forms.PasswordInput(attrs={"class":"form-control"}))
     
     
     def clean_password(self):
-        user1 = authenticate(username=self.cleaned_data["username"],password=self.cleaned_data["password"])
+        user1 = authenticate(phone=self.cleaned_data["phone"],password=self.cleaned_data["password"])
         if user1 is not None:
             return self.cleaned_data.get("password")
         raise ValidationError("این کاربر در سایت عضو نمیباشد :)",code='user_is_not_on_Db')
