@@ -1,9 +1,16 @@
-from typing import Any
+import re
+from django.core import validators
 from django import forms
 from django.forms import ValidationError
-from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 User=get_user_model()
+
+def validate_phone(value):
+    pattern1 = r'^09\d{9}$'
+    if not re.match(pattern1, value):
+        raise ValidationError('شماره تلفن معتبر نیست و باید با ۰۹ شروع شود .')
+
+
 
 class Regestrform(forms.Form):
     first_name=forms.CharField(label='نام *:', widget=forms.TextInput( attrs={"class":"form-control" }))
@@ -30,12 +37,5 @@ class Regestrform(forms.Form):
 
 
 class LoginForm(forms.Form):
-    phone=forms.CharField(label="شماره تلفن :", widget=forms.TextInput( attrs={"class":"form-control" }))
+    phone=forms.CharField(label="شماره تلفن :", validators=[validators.MaxLengthValidator(13),validate_phone],widget=forms.TextInput( attrs={"class":"form-control" ,"placeholder":"شماره تلفن به 09 شروع شود"}))
     password=forms.CharField(label='رمز ورود :', widget=forms.PasswordInput(attrs={"class":"form-control"}))
-    
-    
-    # def clean_password(self):
-    #     user1 = authenticate(phone=self.cleaned_data["phone"],password=self.cleaned_data["password"])
-    #     if user1 is not None:
-    #         return self.cleaned_data.get("password")
-    #     raise ValidationError("این کاربر در سایت عضو نمیباشد :)",code='user_is_not_on_Db')

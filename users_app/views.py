@@ -1,5 +1,4 @@
 from django.contrib.auth import logout ,authenticate,login
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render ,redirect
 from django.views import View
 from .forms import Regestrform,LoginForm
@@ -41,9 +40,9 @@ class LoginFormView(View):
                 login(self.request, user)
                 return redirect('/')
             else:
-                form.add_error("phone", "نام کاربری یا رمز عبور اشتباه است.")
+                form.add_error(None, "نام کاربری یا رمز عبور اشتباه است.")
         else:
-            return form.add_error("phone","اطلاعات وارد شده صحیح نیست . ")
+            form.add_error(None,"اطلاعات وارد شده صحیح نیست . ")
              
         return render(request,'users_app/login.html',context={'form':form})
 
