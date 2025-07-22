@@ -7,6 +7,6 @@ admin.site.register(SiteInfo)
 
 @admin.register(Banner)
 class BanerAdmin(admin.ModelAdmin):
-    list_display=['position','order']
+    list_display=["title",'position','order']
     list_filter=['position']
-    
+    list_editable=['position','order']

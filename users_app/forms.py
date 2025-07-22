@@ -39,3 +39,12 @@ class Regestrform(forms.Form):
 class LoginForm(forms.Form):
     phone=forms.CharField(label="شماره تلفن :", validators=[validators.MaxLengthValidator(13),validate_phone],widget=forms.TextInput( attrs={"class":"form-control" ,"placeholder":"شماره تلفن به 09 شروع شود"}))
     password=forms.CharField(label='رمز ورود :', widget=forms.PasswordInput(attrs={"class":"form-control"}))
+
+
+
+class Phone_validate_form(forms.Form):
+    phone=forms.CharField(label="شماره تلفن :", validators=[validators.MaxLengthValidator(13),validate_phone],widget=forms.TextInput( attrs={"class":"form-control" ,"placeholder":"شماره تلفن به 09 شروع شود"}))
+
+
+class Phone_validate_code_form(forms.Form):
+    code=forms.CharField(label="کد دریافتی :", validators=[validators.MaxLengthValidator(4)],widget=forms.TextInput( attrs={"class":"form-control",'maxlength':"4" }))
