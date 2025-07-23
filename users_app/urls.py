@@ -9,6 +9,6 @@ urlpatterns = [
     path('logout/',views.logoutFromSite,name='logout'),
     path('final_register/',views.RegisterFormView.as_view(),name='register'),
     path('phone_register/',views.RgisterPhoneView.as_view(),name='phone_register'),
-        path('validate_code/',views.ValidateCodeView.as_view(),name='validate_code'),
+    path('validate_code/',views.ValidateCodeView.as_view(),name='validate_code'),
 
 ]

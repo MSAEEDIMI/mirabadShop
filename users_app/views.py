@@ -4,8 +4,11 @@ from django.views import View
 from .forms import Regestrform,LoginForm,Phone_validate_form,Phone_validate_code_form
 from django.contrib.auth import get_user_model
 from django.views.generic.edit import FormView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from kavenegar import *
+from .models import Otp
+from random import randint
+import uuid
 User=get_user_model()
 
 class RegisterFormView(FormView):
@@ -64,8 +67,13 @@ class RgisterPhoneView(View):
             return redirect('home_app:home') 
         form=Phone_validate_form(request.POST)
         if form.is_valid():
+            code=randint(1000,10000)
+            token=uuid.uuid4()
             phone = form.cleaned_data.get('phone')
-
+            Otp.objects.create(token=token,phone=phone,code=code)
+            print(token)
+            print(code) 
+            return redirect(reverse("users_app:validate_code")+f"?token={token}")     
         else:
             form.add_error(None,"اطلاعات وارد شده صحیح نیست . ")
              
@@ -84,8 +92,19 @@ class ValidateCodeView(View):
             return redirect('home_app:home') 
         form=Phone_validate_code_form(request.POST)
         if form.is_valid():
+            token=request.GET.get("token")
             code = form.cleaned_data.get('code')
-
+            if Otp.objects.filter(code=code,token=token).exists():
+                newUser=Otp.objects.get(token=token)
+                if User.objects.filter(phone=newUser.phone).exists():
+                    user=User.objects.get(phone=newUser.phone)
+                    login(request,user)
+                    newUser.delete()
+                    return redirect("home_app:home")
+                user,is_created=User.objects.get_or_create(phone=newUser.phone)
+                login(request,user)
+                newUser.delete()
+                return redirect("home_app:home")
         else:
             form.add_error(None,"اطلاعات وارد شده صحیح نیست . ")
              
