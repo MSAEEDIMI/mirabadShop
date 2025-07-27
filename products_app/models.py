@@ -23,6 +23,7 @@ UNIT_CHOICES = [
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT,verbose_name='دسته')
     name = models.CharField(max_length=40,verbose_name='نام محصول')
+    discription=models.TextField(null=True ,blank=True, verbose_name="توضیحات")
     name_to_english = models.CharField(max_length=50,verbose_name='نام انگلیسی محصول')
     base_price = models.IntegerField(help_text="قیمت پایه بدون تخفیف",verbose_name='قیمت پایه ')
 

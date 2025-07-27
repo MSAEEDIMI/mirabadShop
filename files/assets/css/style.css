@@ -5,6 +5,10 @@
   font-display: swap;
 }
 @font-face {
+    font-family: estedad;
+    src: url("../fonts/estedad/Estedad-Regular.ttf");
+}
+@font-face {
   font-family: "vazir-bold";
   src: url("../fonts/vazir/Vazir-Bold.eot");
   src: local("../fonts/vazir/Vazir"), url("../fonts/vazir/Vazir-Bold.woff") format("woff"), url("../fonts/vazir/Vazir-Bold.ttf") format("truetype");
@@ -68,6 +72,7 @@ section .section-subtitle {
   font-size: 16px;
   text-align: center;
 }
+
 section#header #encode4325436 {
   font-size: 13px;
   line-height: 32px;
@@ -414,12 +419,12 @@ section.inner-page#products-page #order-filters .products-view-type {
   transition: 0.2s;
 }
 section.inner-page#products-page #order-filters .products-view-type:hover {
-  color: #fcb941;
+  color: #f82f2f;
   transition: 0.2s;
 }
 section.inner-page#products-page #order-filters .products-view-type.active {
-  color: #fcb941;
-  border: 1px solid #fcb941;
+  color: #fb2626;
+  border: 1px solid #ff2121;
 }
 section.inner-page#products-page #order-filters .order-filter {
   font-size: 12px;
@@ -432,13 +437,13 @@ section.inner-page#products-page #order-filters .order-filter {
 }
 section.inner-page#products-page #order-filters .order-filter:hover {
   color: white;
-  background-color: #fcb941;
+  background-color: #f82626;
   opacity: 0.8;
   transition: 0.2s;
 }
 section.inner-page#products-page #order-filters .order-filter.active {
   color: white;
-  background-color: #fcb941;
+  background-color: #ff1919;
 }
 section.inner-page#products-page .filters-container input[type=checkbox], section.inner-page#products-page .filters-container input[type=radio] {
   width: 22px;
@@ -471,7 +476,7 @@ section.inner-page#products-page .filters-container .encode4365gbf265g43d-range 
 section.inner-page#products-page .filters-container .btn-warning {
   font-family: "vazir-light-fd";
   font-size: 15px;
-  background-color: #fcb941;
+  background-color: #f92e2e;
   border: 1px solid #282828;
   border-radius: 10px;
   transition: 0.3s;
@@ -491,7 +496,7 @@ section.inner-page#products-page .side-product h2 {
   transition: 0.1s;
 }
 section.inner-page#products-page .side-product h2:hover {
-  color: #fcb941;
+  color: #f92e2e;
 }
 section.inner-page#products-page .side-product .image {
   min-height: 65px;
@@ -744,7 +749,7 @@ section.inner-page#product-page #product-intro .cta-container .btn-outline-secon
   border-color: gray;
 }
 section.inner-page#product-page #product-intro .cta-container .btn-outline-secondary:hover {
-  background-color: #fcb941;
+  background-color: #f92e2e;
   border-color: dimgray;
 }
 section.inner-page#product-page #product-intro .cta-container .btn-outline-secondary.encode43243d {
@@ -778,7 +783,7 @@ section.inner-page#product-page #product-intro #share-links .share-link {
   }
 }
 section.inner-page#product-page #product-intro #share-links .share-link:hover {
-  color: #fcb941;
+  color: #f92e2e;
   transition: 0.2s;
 }
 section.inner-page#product-page #product-nav-tabs {
@@ -1252,7 +1257,7 @@ section.inner-page .team-person svg {
   display: inline-block;
   font-size: 18px;
   font-weight: normal;
-  color: #fcb941;
+  color: #f92e2e;
   opacity: 0.75;
 }
 section.inner-page .team-person i:hover {
@@ -1289,7 +1294,7 @@ section.inner-page#profile-page a {
   color: #282828;
 }
 section.inner-page#profile-page a:hover {
-  color: #fcb941;
+  color: #f92e2e;
 }
 section.inner-page#profile-page .modal {
   /* Password Field */
@@ -1358,7 +1363,7 @@ section.inner-page#profile-page #side-panel ul li a .icon {
   opacity: 0.7;
 }
 section.inner-page#profile-page #side-panel ul li a:hover {
-  color: #fcb941;
+  color: #f92e2e;
 }
 section.inner-page#profile-page #side-panel ul li a:hover .icon {
   opacity: 1;
@@ -1486,7 +1491,7 @@ section.inner-page#profile-page #addresses .address {
 }
 section.inner-page#profile-page #addresses .address a svg {
   font-size: 24px;
-  color: #fcb941;
+  color: #f92e2e;
   padding-top: 5px;
   transition: 0.2s;
 }
@@ -1515,18 +1520,18 @@ section.inner-page#profile-page #orders-status ul li a {
   font-size: 14px;
 }
 section.inner-page#profile-page #orders-status ul li a.active {
-  color: #fcb941;
+  color: #f92e2e;
 }
 section.inner-page#profile-page #orders-status ul li a.active .badge {
-  background-color: #fcb941;
+  background-color: #f92e2e;
 }
 section.inner-page#profile-page #orders-status ul li a:hover {
-  color: #fcb941;
+  color: #f92e2e;
 }
 section.inner-page#profile-page #orders-status ul li .badge {
   font-size: 12px;
   font-weight: normal;
-  background-color: #fcb941;
+  background-color: #f92e2e;
   padding: 5px 7px;
 }
 section.inner-page#profile-page #orders-status .nowrap > .row {
@@ -1768,7 +1773,7 @@ img {
   transition: 0.3s;
 }
 .encode4326654321vfb .icons .btn:hover {
-  background-color: #fcb941;
+  background-color: #f92e2e;
   color: #ffffff;
   cursor: pointer;
   transition: 0.3s;

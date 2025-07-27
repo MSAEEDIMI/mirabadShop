@@ -2,31 +2,31 @@
 <section id="header">
 
     <!-- Search NavBar -->
-<div class="d-flex justify-content-between align-items-center px-4 py-2 bg-light rounded shadow-sm">
-    {% if user.is_authenticated %}
-        <a href="{% url 'users_app:logout' %}" class="btn btn-sm btn-outline-danger px-3">
-            <i class="fa fa-sign-out-alt"></i>
-            <span class="d-none d-md-inline">خروج</span>
-        </a>
-    {% else %}
-        <a href="{% url 'users_app:login' %}" class="btn btn-sm btn-outline-info px-3">
-            <i class="fa fa-sign-in-alt"></i>
-            <span class="d-none d-md-inline">ورود</span>
-        </a>
+    <div class="d-flex justify-content-between align-items-center px-4 py-2 bg-light rounded shadow-sm">
 
-        <a href="{% url 'users_app:phone_register' %}" class="btn btn-sm btn-outline-success px-3 ms-auto">
-            <i class="fa fa-user-plus"></i>
-            <span class="d-none d-md-inline">عضویت</span>
-        </a>
-    {% endif %}
-</div>
-
+        {% if user.is_authenticated %}
+            <a href="{% url 'users_app:logout' %}" class="btn btn-sm btn-outline-danger px-3">
+                <i class="fa fa-sign-out-alt"></i>
+                <span class="d-none d-md-inline">خروج</span>
+            </a>
+            <p class="text text-dark m-1" style="font-family: estedad;font-size: 80%; " >
+                کاربر گرامی  <span class="text-success">{{user.first_name}} {{user.last_name}}</span> به  <span class="text-danger" >{{siteInfo.title}}</span> خوش آمدی.
+            </p>
+            <div></div>
+        {% else %}
+            <a href="{% url 'users_app:phone_register' %}" class="btn btn-sm btn-outline-success px-3 ms-auto">
+                <i class="fa fa-user-plus"></i>
+                <span class="d-none d-md-inline">عضویت / ورود</span>
+            </a>
+            <div></div>
+        {% endif %}
+    </div>
     <div id="encode43254bvfb">
         <div class="container pt-1">
             <div class="row py-3 align-content-center">
                 <div class="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2" id="encode4326523bvfb">
                     <a href="{% url "home_app:home" %}" class="display-10">
-                        <img src=" {{siteInfo.logo.url}} ", style="width: 95px;  max-width: 100%; height: auto;", alt=""> <span class="text-danger">فروشگاه</span>  میرآباد        
+                        <img src=" {{siteInfo.logo.url}} ", style="width: 95px;  max-width: 100%; height: auto;", alt=""> <span class="text-danger">{{title.0}}</span> {{title.1}}        
                     </a>
                 </div>
                 <form action=" {% url "home_app:search" %} " method="get" class="col-12 col-md-5 col-xl-6">
@@ -292,13 +292,6 @@
                                                 <ul style="">
                                                     <li><a href="faq.html">سوالات متداول</a></li>
                                                     <li><a href="contact.html">تماس با ما</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="droopmenu-parent" aria-haspopup="true">
-                                                <a href="blog.html" aria-expanded="false">بلاگ آموزشی<em class="droopmenu-topanim"></em></a><div class="dm-arrow"></div>
-                                                <ul style="">
-                                                    <li><a href="blog.html">آرشیو مطالب</a></li>
-                                                    <li><a href="blog-post.html">داخلی بلاگ</a></li>
                                                 </ul>
                                             </li>
                                             <li class="droopmenu-parent" aria-haspopup="true">

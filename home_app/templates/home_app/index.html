@@ -121,7 +121,7 @@
                             </div>
                             <div class="details p-3">
                                 <div class="category">
-                                    <a href="{{product.get_absolute_url}}">{{product.catigory}}</a>
+                                    <a href="{{product.get_absolute_url}}">{{product.category}}</a>
 
                                 </div>
                                 <a href="{{product.get_absolute_url}}"><h2>{{product.name}}</h2></a>
@@ -154,43 +154,45 @@
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 featured-product most-visited">
             {% for product in products  %}
-            {% if product.likes > 20 %}
-                <div class="col">
-                    <!-- Product Box -->
+                {% if product.likes > 20 %}
                     <div class="col">
                         <!-- Product Box -->
-                        <div class="encode4326654321vfb">
-                            <a href="{{product.get_absolute_url}}"><div class="image" style="background-image: url('{{product.image.url}}')"></div></a>
-                            <div class="icons">
-                                <div class="btn btn-outline-secondary encode43243d"></div>
-                                <div class="btn btn-outline-secondary encode43bf243d"></div>
-                            </div>
-                            <div class="details p-3">
-                                <div class="category">
-                                    <a href="{{product.get_absolute_url}}">{{product.catigory}}</a>
-
+                        <div class="col">
+                            <!-- Product Box -->
+                            <div class="encode4326654321vfb">
+                                <a href="{{product.get_absolute_url}}"><div class="image" style="background-image: url('{{product.image.url}}')"></div></a>
+                                <div class="icons">
+                                    <div class="btn btn-outline-secondary encode43243d"></div>
+                                    <div class="btn btn-outline-secondary encode43bf243d"></div>
                                 </div>
-                                <a href="{{product.get_absolute_url}}"><h2>{{product.name}}</h2></a>
-                                <div class="encode4365gbf265g43d">{{product.end_Prise}} تومان </div>
-                                <div class="rate">
-                                    {% with 5 as max_stars %}
-                                        {% for i in "12345"|make_list %}
-                                            {% if forloop.counter <= product.star_rating %}
-                                            <i class="fa-solid fa-star" style="color: #FFD43B;" ></i>
-                                            {% else %}
-                                            <i class="fa-regular fa-star" style="color: #FFD43B;" ></i>
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endwith %}
-                                    <span class="encode43bf265g43d text-danger">({{product.likes}} رای دهنده)</span>
+                                <div class="details p-3">
+                                    <div class="category">
+                                        <a href="{{product.get_absolute_url}}">{{product.category}}</a>
+                                    </div>
+                                    <a href="{{product.get_absolute_url}}"><h2>{{product.name}}</h2></a>
+                                        {% if product.discount or product.all_dicount %}
+                                            <span class="discounted"> {{product.base_price}} تومان   </span>
+                                        {% endif %}
+                                    <div class="encode4365gbf265g43d">{{product.final_price}} تومان </div>
+                                    <div class="rate">
+                                        {% with 5 as max_stars %}
+                                            {% for i in "12345"|make_list %}
+                                                {% if forloop.counter <= product.star_rating %}
+                                                <i class="fa-solid fa-star" style="color: #FFD43B;" ></i>
+                                                {% else %}
+                                                <i class="fa-regular fa-star" style="color: #FFD43B;" ></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endwith %}
+                                        <span class="encode43bf265g43d text-danger">({{product.likes}} رای دهنده)</span>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- /Product Box -->
                         </div>
                         <!-- /Product Box -->
                     </div>
-                    <!-- /Product Box -->
-                </div>
-            {% endif %}
+                {% endif %}
             {% endfor %}
         </div>
         <!-- /Products -->
@@ -369,34 +371,42 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 most-sales-product {{catigore.slug}}" data-aos="fade-up" data-aos-duration="1000">
                 {% for product in products %}
                     {% if catigore.slug == product.category.slug %}
-                    <div class="col">
+                        <div class="col">
                         <!-- Product Box -->
-                        <div class="encode4326654321vfb">
-                            <a href="{{product.get_absolute_url}}"><div class="image" style="background-image: url('{{product.image.url}}')"></div></a>
-                            <div class="icons">
-                                <div class="btn btn-outline-secondary encode43243d"></div>
-                                <div class="btn btn-outline-secondary encode43bf243d"></div>
-                            </div>
-                            <div class="details p-3">
-                                <div class="category">
-                                    <a href="{{product.get_absolute_url}}">{{product.catigory}}</a>
+                        <div class="col">
+                            <!-- Product Box -->
+                            <div class="encode4326654321vfb">
+                                <a href="{{product.get_absolute_url}}"><div class="image" style="background-image: url('{{product.image.url}}')"></div></a>
+                                <div class="icons">
+                                    <div class="btn btn-outline-secondary encode43243d"></div>
+                                    <div class="btn btn-outline-secondary encode43bf243d"></div>
+                                </div>
+                                <div class="details p-3">
+                                    <div class="category">
+                                        <a href="{{product.get_absolute_url}}">{{product.category}}</a>
+                                    </div>
+                                    <a href="{{product.get_absolute_url}}"><h2>{{product.name}}</h2></a>
 
-                                </div>
-                                <a href="{{product.get_absolute_url}}"><h2>{{product.name}}</h2></a>
-                                <div class="encode4365gbf265g43d">{{product.final_price}} تومان </div>
-                                <div class="rate">
-                                    {% with 5 as max_stars %}
-                                        {% for i in "12345"|make_list %}
-                                            {% if forloop.counter <= product.star_rating %}
-                                            <i class="fa-solid fa-star" style="color: #FFD43B;" ></i>
-                                            {% else %}
-                                            <i class="fa-regular fa-star" style="color: #FFD43B;" ></i>
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endwith %}
-                                    <span class="encode43bf265g43d text-danger">({{product.likes}} رای دهنده)</span>
+                                    <div class="encode4365gbf265g43d">
+                                                                                {% if product.discount or product.all_dicount %}
+                                            <span class="discounted"> {{product.base_price}} تومان </span>
+                                        {% endif %}
+                                        {{product.final_price}} تومان </div>
+                                    <div class="rate">
+                                        {% with 5 as max_stars %}
+                                            {% for i in "12345"|make_list %}
+                                                {% if forloop.counter <= product.star_rating %}
+                                                <i class="fa-solid fa-star" style="color: #FFD43B;" ></i>
+                                                {% else %}
+                                                <i class="fa-regular fa-star" style="color: #FFD43B;" ></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endwith %}
+                                        <span class="encode43bf265g43d text-danger">({{product.likes}} رای دهنده)</span>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- /Product Box -->
                         </div>
                         <!-- /Product Box -->
                     </div>
