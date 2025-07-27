@@ -12,60 +12,29 @@
                 <div class="content">
                     <div class="row">
                         <div class="col-12 col-lg-5 px-lg-0">
-                            <div class="swiper-container gallery-top">
-                                <!-- Additional required wrapper -->
-                                <ul class="swiper-wrapper">
-                                    <!-- Slides -->
-                                    <li id="1" class="swiper-slide">
-                                        <a href=" {% static "assets/images/products/p100.png" %} " itemprop="contentUrl" data-size="900x710">
-                                            <img src=" {% static "assets/images/products/p100.png" %} " itemprop="thumbnail" alt="گوشی موبایل سامسونگ مدل Galaxy A21s" />
+                            <div class="swiper-container gallery-top" >
+                                <ul class="swiper-wrapper h-100">
+                                    <li id="1" class="swiper-slide d-flex justify-content-center align-items-center">
+                                        <a href="{% static 'assets/images/products/p100.png' %}" itemprop="contentUrl" data-size="900x710">
+                                            <img src="{{ product.image.url }}" itemprop="thumbnail"
+                                                class="img-fluid"
+                                                style="max-height: 100%; object-fit: contain;" />
                                         </a>
                                     </li>
-
-                                    <!-- /Slides -->
                                 </ul>
-                                <!-- If we need navigation buttons -->
+
                                 <div title="قبلی" class="swiper-button-prev swiper-button-white"></div>
                                 <div title="بعدی" class="swiper-button-next swiper-button-white"></div>
                             </div>
 
+
                             <!-- Swiper -->
                             <div class="swiper-container gallery-thumbs">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide" style="background-image:url('{% static "assets/images/products/p100.png" %}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{product.image.url}}')"></div>
                                 </div>
                             </div>
 
-                            <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="pswp__bg"></div>
-                                <div class="pswp__scroll-wrap">
-                                    <div class="pswp__container">
-                                        <div class="pswp__item"></div>
-                                        <div class="pswp__item"></div>
-                                        <div class="pswp__item"></div>
-                                    </div>
-                                    <div class="pswp__ui pswp__ui--hidden">
-                                        <div class="pswp__top-bar">
-                                            <div class="pswp__counter"></div>
-                                            <button class="pswp__button pswp__button--close" title="بستن (Esc)"></button>
-                                            <button class="pswp__button pswp__button--fs" title="تمام صفحه"></button>
-                                            <button class="pswp__button pswp__button--zoom" title="بزرگنمایی"></button>
-                                            <div class="pswp__preloader">
-                                                <div class="pswp__preloader__icn">
-                                                    <div class="pswp__preloader__cut">
-                                                        <div class="pswp__preloader__donut"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button class="pswp__button pswp__button--arrow--left" title="قبلی"></button>
-                                        <button class="pswp__button pswp__button--arrow--right" title="بعدی"></button>
-                                        <div class="pswp__caption">
-                                            <div class="pswp__caption__center"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="col-12 col-lg-7 mt-5 mt-lg-0 pl-lg-0" id="product-intro">
                             <a href="product.html">
@@ -221,7 +190,7 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-12 py-3">
-                                                                        <form method="post" action="https://rubik-market-html.wbrk.ir/">
+                                                                        <form method="post">
                                                                             <div id="send-comment-form">
                                                                                 <p>نظر خود را برای این مطلب ارسال کنید. نشانی ایمیل شما منتشر نخواهد شد.</p>
                                                                                 <div class="row">

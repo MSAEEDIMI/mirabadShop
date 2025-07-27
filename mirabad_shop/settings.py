@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'products_app',
     'users_app',
     'customAccounts',
+    'cart_app',
+    
     # installed apps
     'django_cleanup',
     'django_social_share'
