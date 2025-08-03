@@ -10,3 +10,6 @@ class Otp(models.Model):
     
     def __str__(self) -> str:
         return self.phone
+    
+    
+    

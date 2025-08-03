@@ -64,13 +64,15 @@
                             {% endif %}
 
                             <hr>
+                        <form method="post" action="{% url "cart_app:cart_add" product.id %}">
+                            {% csrf_token %}
                             <div class="variables">
                                 <div class="title">گزینه های موجود:</div>
                                 <div class="row">
                                     <div class="col-12 col-sm-4 col-lg-3">
                                         <div class="variable">
                                             <div class="sub-title pt-2 pb-2">تعداد</div>
-                                            <input type="number" min="1" max="10" class="form-control" value="1">
+                                            <input type="number" min="1" class="form-control" value="1" name="quntity">
                                         </div>
                                     </div>
                                 </div>
@@ -78,15 +80,14 @@
                             <div class="cta-container pt-3 pt-md-5">
                                 <div class="row">
                                     <div class="col-12">
-                                        <a href="cart.html">
-                                            <div class="btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket"><i class="fa fa-shopping-cart"></i> افزودن به سبد خرید</div>
-                                        </a>
+                                        <button type="submit"  class="btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket"><i class="fa fa-shopping-cart"></i> افزودن به سبد خرید</button>
                                         <br class="d-sm-none">
                                         <div class="btn btn-outline-secondary encode43243d mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="افزودن به علاقه‌مندی"></div>
                                         <a href="#"><div class="btn btn-outline-secondary encode43bf243d mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="مقایسه"></div></a>
                                     </div>
                                 </div>
                             </div>
+                        </form>
                             <!-- Share Links -->
                             <div class="pt-5" id="share-links">
                                 <span>اشتراک گذاری: </span>

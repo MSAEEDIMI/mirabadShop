@@ -42,7 +42,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.first_name+" " +self.last_name
+        if self.first_name or self.last_name:
+            return self.first_name+" " +self.last_name
+        else:
+            return self.phone
 
         
     class Meta:
