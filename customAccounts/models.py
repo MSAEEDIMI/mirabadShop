@@ -51,3 +51,4 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name_plural="حساب های کاربری "
         verbose_name="حساب"
+        

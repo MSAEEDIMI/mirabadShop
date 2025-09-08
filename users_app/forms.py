@@ -2,6 +2,7 @@ import re
 from django.core import validators
 from django import forms
 from django.forms import ValidationError
+from .models import AddressModel
 from django.contrib.auth import get_user_model
 User=get_user_model()
 
@@ -48,3 +49,16 @@ class Phone_validate_form(forms.Form):
 
 class Phone_validate_code_form(forms.Form):
     code=forms.CharField(label="کد دریافتی :", validators=[validators.MaxLengthValidator(4)],widget=forms.TextInput( attrs={"class":"form-control",'maxlength':"4" }))
+
+
+class AddresCreationForm(forms.ModelForm):
+    user=forms.IntegerField(required=False)
+    class Meta:
+        model=AddressModel
+        fields=['full_name','phone','postal_code','address']
+        widgets = {
+            'full_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'address': forms.Textarea(attrs={'class': 'form-control'}),
+            'postal_code': forms.TextInput(attrs={'class': 'form-control'}),
+        }

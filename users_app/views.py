@@ -1,12 +1,12 @@
 from django.contrib.auth import logout ,authenticate,login
 from django.shortcuts import render ,redirect
 from django.views import View
-from .forms import Regestrform,LoginForm,Phone_validate_form,Phone_validate_code_form
+from .forms import Regestrform,LoginForm,Phone_validate_form,Phone_validate_code_form,AddresCreationForm
 from django.contrib.auth import get_user_model
 from django.views.generic.edit import FormView
 from django.urls import reverse, reverse_lazy
 from kavenegar import *
-from .models import Otp
+from .models import Otp,AddressModel
 from random import randint
 import uuid
 User=get_user_model()
@@ -71,8 +71,6 @@ class RgisterPhoneView(View):
             token=uuid.uuid4()
             phone = form.cleaned_data.get('phone')
             Otp.objects.create(token=token,phone=phone,code=code)
-            print(token)
-            print(code) 
             return redirect(reverse("users_app:validate_code")+f"?token={token}")     
         else:
             form.add_error(None,"اطلاعات وارد شده صحیح نیست . ")
@@ -110,8 +108,20 @@ class ValidateCodeView(View):
              
         return render(request,'users_app/validate_phone.html',context={'form':form})
 
-
-
+class AddAddressView(View):
+    
+    def post(self,requst):
+        address=AddressModel.objects.filter(user=requst.user)
+        form=AddresCreationForm(requst.POST)
+        if form.is_valid:
+            if address.count()<10:
+                form=form.save(commit=False)
+                form.user=requst.user
+                form.save()
+        return render(requst,'users_app/profile/addresses.html',context={'form':form})
+    def get(self,requst):
+        form=AddresCreationForm()
+        return render(requst,'users_app/profile/addresses.html',context={'form':form})
 
 def logoutFromSite(requst):
     logout(requst)

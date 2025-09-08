@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'django.contrib.humanize',
         
     # my apps
     'home_app',
@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     
     # installed apps
     'django_cleanup',
-    'django_social_share'
+    'django_social_share',
+    'widget_tweaks',
     
     
     

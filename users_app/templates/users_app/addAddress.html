@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+<section class="inner-page" id="contact-page">
+
+    <div class="container py-2 py-md-5">
+        <div class="row">
+            <div class="col-12 col-sm-10 offset-sm-1">
+                <div class="content">
+                    <div class="row">
+
+                        <div class="col-12 col-lg-7 pt-5 pt-md-0 align-self-center">
+                            <div class="title">عضویت در فروشگاه میرآباد</div>
+                            <p>با ورود به صفحه خود از همه امکانات سایت بهره مند شوید.</p>
+                            <form action="" method="POST">
+
+                                {% if form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>{{ form.non_field_errors }}</p>
+                                </div>
+                                {% endif %}
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {{form.full_name.label}}
+                                    {{ form.full_name }}
+                                </div>
+                                <div class="form-group">
+                                    {{form.address.label}} 
+                                    {{ form.address }}
+                                   
+                                </div>
+                                <div class="form-group">
+                                    {{form.postal_code.label}}
+                                    {{ form.postal_code }}
+                                </div> 
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success"> افزودن آدرس</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

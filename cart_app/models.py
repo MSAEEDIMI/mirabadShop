@@ -5,7 +5,6 @@ User=get_user_model()
 # Create your models here.
 class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='orders',verbose_name='کاربر')
-    address=models.CharField(max_length=400,verbose_name='آدرس')
     email=models.EmailField(blank=True,null=True,verbose_name='ایمیل')
     phone=models.CharField(max_length=12,verbose_name='شماره تلفن گیرنده')
     create_at=models.DateTimeField(auto_now_add=True,verbose_name='تاریخ ایجاد سفارش')

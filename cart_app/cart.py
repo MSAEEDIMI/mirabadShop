@@ -26,6 +26,30 @@ class Cart:
         result=f"{id}"
         return result
 
+
+    def total(self):
+        total=0
+        for cart in self.cart.values():
+            total+=cart['total_price']
+        return total
+        
+    def clear(self):
+        for key in list(self.cart.keys()):  
+            del self.cart[key]
+        self.save()
+        
+    def remove(self,product):
+        product_id = str(product)
+        if product_id in self.cart:
+            del self.cart[product_id]
+        self.save()
+        
+    def quantity(self):
+        
+        return sum(item['quntity'] for item in self.cart.values() if 'quntity' in item)
+        
+        
+
     def add(self,prodct,quntity=1,override_quantity=False):
         unique_id=self.unique_id_genrator(id=prodct.id)
         if unique_id not in self.cart:  
