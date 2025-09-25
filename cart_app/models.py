@@ -7,6 +7,7 @@ class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='orders',verbose_name='کاربر')
     email=models.EmailField(blank=True,null=True,verbose_name='ایمیل')
     phone=models.CharField(max_length=12,verbose_name='شماره تلفن گیرنده')
+    total=models.IntegerField(verbose_name='مجموع',blank=True,null=True)
     create_at=models.DateTimeField(auto_now_add=True,verbose_name='تاریخ ایجاد سفارش')
     is_paid=models.BooleanField(default=False,verbose_name='پرداخت')
     
@@ -18,10 +19,10 @@ class Order(models.Model):
        
     
 class OrderItem(models.Model):
-    order=models.ForeignKey(Order, on_delete=models.CASCADE,verbose_name='سفارش')
+    order=models.ForeignKey(Order,related_name='items', on_delete=models.CASCADE,verbose_name='سفارش')
     product=models.ForeignKey(Product, on_delete=models.CASCADE,verbose_name='محصول')
     quantity=models.SmallIntegerField(verbose_name='تعداد')
-    price=models.PositiveIntegerField(verbose_name='قیمت')
+    price=models.IntegerField(verbose_name='قیمت')
     
     def __str__(self):
         return self.order.phone

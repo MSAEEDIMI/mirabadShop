@@ -11,4 +11,6 @@ urlpatterns = [
     path('phone/register/',views.RgisterPhoneView.as_view(),name='phone_register'),
     path('validate/code/',views.ValidateCodeView.as_view(),name='validate_code'),
     path('add/address/',views.AddAddressView.as_view(),name='add_address'),
+    path('del/addres/<int:address_id>',views.del_address_viwe,name='del_addres'),
+    path('edit/addres/<int:address_id>',views.edit_address_viwe,name="edit_addres")
 ]

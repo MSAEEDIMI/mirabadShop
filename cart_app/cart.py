@@ -28,11 +28,15 @@ class Cart:
 
 
     def total(self):
-        total=0
-        for cart in self.cart.values():
-            total+=cart['total_price']
+        total = 0
+        for item in self.cart.values():
+            if 'id' not in item or 'quntity' not in item:
+                continue
+            product = Product.objects.get(id=int(item['id']))
+            total += int(item['quntity']) * product.final_price()
         return total
         
+
     def clear(self):
         for key in list(self.cart.keys()):  
             del self.cart[key]
@@ -45,7 +49,6 @@ class Cart:
         self.save()
         
     def quantity(self):
-        
         return sum(item['quntity'] for item in self.cart.values() if 'quntity' in item)
         
         

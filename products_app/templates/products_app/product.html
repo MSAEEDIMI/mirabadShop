@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load social_share %}
+{% load humanize %}
 {% load static %}
 {% block content %}
 
@@ -74,8 +75,8 @@
                             </div>
 
                             <div class="encode4365gbf265g43d-container py-2">
-                                <span class="pre-encode4365gbf265g43d"> {{product.base_price}} </span>
-                                <span class="encode4365gbf265g43d"> {{product.final_price}} <span>تومان</span></span>
+                                <span class="pre-encode4365gbf265g43d"> {{ product.base_price|intcomma:False }} </span>
+                                <span class="encode4365gbf265g43d"> {{ product.final_price|intcomma:False }} <span>تومان</span></span>
                                 <div class="badge badge-danger font-weight-light m-1 py-1 px-2">10%</div>
                             </div>
 
@@ -143,8 +144,8 @@
                                                     {% else %}
                                                         <p> توضیحات : ندارد :( </p>
                                                     {% endif %}
-                                                    <p> قیمت اصلی : {{product.base_price}} </p>
-                                                    <p> قیمت با احتصاب تخفیف  ( {{product.discount}} ) درصد : {{product.final_price}} </p>
+                                                    <p> قیمت اصلی : {{product.base_price|intcomma:False }} </p>
+                                                    <p> قیمت با احتصاب تخفیف  ( {{product.discount}} ) درصد : {{product.final_price|intcomma:False}} </p>
                                                 </div>
                                                 <!-- /HTML Tab -->
 

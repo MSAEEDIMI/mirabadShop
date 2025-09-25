@@ -117,40 +117,22 @@
                                 <div class="container">
                                     <div class="row">
                                         <!-- Address Record -->
-                                        <div class="col-12 address py-2">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-10">
-                                                    <div class="title">تهران، بلوار ولی عصر</div>
-                                                    <div class="sub-title">تهران، تهران</div>
-                                                    <div class="sub-title">1234567890</div>
-                                                    <div class="sub-title">امید کریمی</div>
-                                                    <div class="sub-title">02112345678</div>
-                                                </div>
-                                                <div class="col-12 col-sm-2 text-lg-end">
-                                                    <a href="#" onclick="return confirm('آیا جهت حذف این آدرس اطمینان دارید؟')" class="float-right float-sm-left pr-2 pl-sm-2"><i class="fa fa-trash-alt font-weight-normal"></i></a>
-                                                    <a href="#" class="float-right float-sm-left"><i class="fa fa-edit font-weight-normal"></i></a>
-                                                    <a href="#" class="float-right float-sm-left ml-2" title="آدرس پیش فرض"><i class="fa fa-check-circle" style="color: #fcb941"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Address Record -->
-                                        <!-- Address Record -->
-                                        <div class="col-12 address py-2">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-10">
-                                                    <div class="title">تهران، بلوار ولی عصر</div>
-                                                    <div class="sub-title">تهران، تهران</div>
-                                                    <div class="sub-title">1234567890</div>
-                                                    <div class="sub-title">امید کریمی</div>
-                                                    <div class="sub-title">02112345678</div>
-                                                </div>
-                                                <div class="col-12 col-sm-2 text-lg-end">
-                                                    <a href="#" onclick="return confirm('آیا جهت حذف این آدرس اطمینان دارید؟')" class="float-right float-sm-left pr-2 pl-sm-2"><i class="fa fa-trash-alt font-weight-normal"></i></a>
-                                                    <a href="#" class="float-right float-sm-left"><i class="fa fa-edit font-weight-normal"></i></a>
-                                                    <a href="#" class="float-right float-sm-left ml-2" title="آدرس پیش فرض"><i class="fa fa-circle-notch"></i></a>
+                                        {% for address in request.user.addresses.all %}
+                                            <div class="col-12 address py-2">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-10">
+                                                        <div class="title">{{address.address}}</div>
+                                                        <div class="sub-title">کد پستی : {{address.postal_code}}</div>
+                                                        <div class="sub-title">گیرنده : {{address.full_name}} </div>
+                                                        <div class="sub-title">شماره تلفن : {{address.phone}}</div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-2 text-lg-end">
+                                                        <a href=" {% url "users_app:del_addres" address.id  %} " onclick="return confirm('آیا جهت حذف این آدرس اطمینان دارید؟')" class="float-right float-sm-left pr-2 pl-sm-2"><i class="fa fa-trash-alt font-weight-normal"></i></a>
+                                                        <a href=" {% url "users_app:edit_addres" address.id %} " class="float-right float-sm-left"><i class="fa fa-edit font-weight-normal"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        {% endfor %}
                                         <!-- Address Record -->
                                     </div>
                                 </div>

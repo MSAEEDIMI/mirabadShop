@@ -112,17 +112,41 @@ class AddAddressView(View):
     
     def post(self,requst):
         address=AddressModel.objects.filter(user=requst.user)
+        all_address=AddressModel.objects.all()
         form=AddresCreationForm(requst.POST)
-        if form.is_valid:
+        if form.is_valid():
             if address.count()<10:
                 form=form.save(commit=False)
                 form.user=requst.user
                 form.save()
-        return render(requst,'users_app/profile/addresses.html',context={'form':form})
+        return render(requst,'users_app/profile/addresses.html',context={'all_address':all_address,'form':form})
     def get(self,requst):
         form=AddresCreationForm()
-        return render(requst,'users_app/profile/addresses.html',context={'form':form})
+        all_address=AddressModel.objects.all()
+        return render(requst,'users_app/profile/addresses.html',context={'all_address':all_address,'form':form})
 
 def logoutFromSite(requst):
     logout(requst)
     return redirect('home_app:home')
+
+
+def edit_address_viwe(request, address_id):
+    old_address = AddressModel.objects.get(id=address_id)
+    all_address = AddressModel.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        form = AddresCreationForm(request.POST, instance=old_address)
+        if form.is_valid():
+            form.save()
+            return redirect('users_app:add_address')   
+    else:
+        form = AddresCreationForm(instance=old_address)
+
+    return render(request, 'users_app/profile/addresses.html', context={'all_address': all_address, 'form': form})
+
+
+def del_address_viwe(requast,address_id):
+    addres=AddressModel.objects.get(id=address_id)
+    addres.delete()
+    return redirect('users_app:add_address')
+

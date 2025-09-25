@@ -3,7 +3,7 @@ from django.views import View
 from products_app.models import Product
 from .cart import Cart
 from django.contrib import messages
- 
+from .models import Order,OrderItem
 # Create your views here.
 class CartDetaleView(View):
     def get(self,requst):
@@ -37,3 +37,22 @@ def cart_remove(requst,id):
     cart=Cart(requst)
     cart.remove(id)
     return redirect("cart_app:cart_detale")
+
+
+class OrderCreation(View):
+    def get(self,requst):
+        cart=Cart(requst)
+        if cart.total()==0:
+            messages.error(requst, f'محصولی برای خرید موجود نمی باشد.')
+            return redirect("cart_app:cart_detale")
+        order=Order.objects.create(user=requst.user,total=cart.total())
+        for ithem in cart:
+            OrderItem.objects.create(order=order,product=ithem['product'],quantity=ithem['quntity'],price=ithem['final_price'])
+        cart.clear()
+        return redirect("cart_app:order_detale",order.id) # type: ignore
+        
+
+class OrderDetale(View):
+    def get(self,requst,pk):
+        order=get_object_or_404(Order,id=pk)
+        return render(requst,'cart_app/order_detale.html',context={'order':order})
