@@ -152,11 +152,19 @@
                                                 <div><span id="factor-total">{{cart.total|intcomma:False}}</span> تومان</div>
                                             </div>
                                         </div>
-                                        <div class="row py-2">
-                                            <div class="col-12">
-                                                <a href=" {% url "cart_app:order_creation" %} "><input type="submit" value="ادامه ثبت سفارش" class="btn btn-success w-100"></a>
+                                        {% if user.is_authenticated  %}
+                                            <div class="row py-2">
+                                                <div class="col-12">
+                                                    <a href=" {% url "cart_app:order_creation" %} "><input type="submit" value="ادامه ثبت سفارش" class="btn btn-success w-100"></a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% else %}
+                                            <div class="row py-2">
+                                                <div class="col-12">
+                                                    <a href=" {% url "users_app:register" %}?next={% url "cart_app:order_creation" %} "><input type="submit" value="ادامه ثبت سفارش" class="btn btn-success w-100"></a>
+                                                </div>
+                                            </div>    
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

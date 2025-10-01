@@ -1,6 +1,7 @@
 from django.contrib.auth import logout ,authenticate,login
 from django.shortcuts import render ,redirect
 from django.views import View
+from django.utils.http import url_has_allowed_host_and_scheme
 from .forms import Regestrform,LoginForm,Phone_validate_form,Phone_validate_code_form,AddresCreationForm
 from django.contrib.auth import get_user_model
 from django.views.generic.edit import FormView
@@ -27,7 +28,16 @@ class RegisterFormView(FormView):
         password2=form.cleaned_data.get("password2")
         user=User.objects.create_user(phone=phone_number,first_name=first_name,last_name=last_name,password=password2,email=email) # type: ignore
         login(self.request,user)    
+        
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        next_url = self.request.GET.get("next")
+        if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={self.request.get_host()}):
+            return next_url
+        return super().get_success_url()
+    
+    
     
 class LoginFormView(View):
     def get(self,reqeust):
@@ -109,7 +119,6 @@ class ValidateCodeView(View):
         return render(request,'users_app/validate_phone.html',context={'form':form})
 
 class AddAddressView(View):
-    
     def post(self,requst):
         address=AddressModel.objects.filter(user=requst.user)
         all_address=AddressModel.objects.all()
@@ -119,7 +128,11 @@ class AddAddressView(View):
                 form=form.save(commit=False)
                 form.user=requst.user
                 form.save()
-        return render(requst,'users_app/profile/addresses.html',context={'all_address':all_address,'form':form})
+                
+        next_page=requst.GET.get('next')
+        if next_page:
+            return redirect(next_page)
+        return redirect('users_app:add_address')
     def get(self,requst):
         form=AddresCreationForm()
         all_address=AddressModel.objects.all()
