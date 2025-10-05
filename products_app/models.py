@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 class Category(models.Model):
+    parent=models.ForeignKey('self', on_delete=models.CASCADE,blank=True,null=True,related_name="subs")
     name = models.CharField(max_length=30,verbose_name='دسته بندی ')
     slug=models.SlugField(verbose_name='دسته بندی به انگلیسی')
     all_discount = models.IntegerField(default=0,verbose_name='تخفیف برای تمام محصولات این دسته ')
